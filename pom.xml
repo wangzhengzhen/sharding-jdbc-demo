@@ -10,6 +10,7 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>sharding-jdbc-base</module>
+        <module>sharding-sql-test</module>
     </modules>
 
     <properties>
