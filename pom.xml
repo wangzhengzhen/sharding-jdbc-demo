@@ -6,7 +6,11 @@
 
     <groupId>com.engrz.demo.sharding.jdbc</groupId>
     <artifactId>sharding-jdbc-demo</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>sharding-jdbc-base</module>
+    </modules>
 
     <properties>
         <sharding-sphere.version>4.0.0</sharding-sphere.version>
