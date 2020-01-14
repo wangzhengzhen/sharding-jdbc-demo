@@ -2,7 +2,7 @@ create database ds0;
 create database ds1;
 
 CREATE TABLE `ds0`.`t_user0` (
-  `user_id` BIGINT NOT NULL AUTO_INCREMENT,
+  `user_id` BIGINT NOT NULL,
   `user_name` VARCHAR(32) NULL COMMENT '用户姓名',
   `sex` CHAR(2) NULL COMMENT '性别',
   `pwd_plain` VARCHAR(32) NULL COMMENT '密码明文',
