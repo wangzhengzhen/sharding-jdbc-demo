@@ -16,19 +16,19 @@ import java.util.Properties;
  */
 public class EncryptDataSource {
 
-    DataSource getEncryptDataSource() throws SQLException {
-        return EncryptDataSourceFactory.createDataSource(DataSourceUtil.createDataSource("demo_ds"), getEncryptRuleConfiguration(), new Properties());
+    public DataSource getEncryptDataSource() throws SQLException {
+        return EncryptDataSourceFactory.createDataSource(DataSourceUtil.createDataSource("ds_master"), getEncryptRuleConfiguration(), new Properties());
     }
 
     private static EncryptRuleConfiguration getEncryptRuleConfiguration() {
         Properties props = new Properties();
         props.setProperty("aes.key.value", "123456");
         EncryptorRuleConfiguration encryptorConfig = new EncryptorRuleConfiguration("AES", props);
-        EncryptColumnRuleConfiguration columnConfig = new EncryptColumnRuleConfiguration("plain_pwd", "cipher_pwd", "", "aes");
+        EncryptColumnRuleConfiguration columnConfig = new EncryptColumnRuleConfiguration("pwd_plain", "pwd_cipher", "", "aes");
         EncryptTableRuleConfiguration tableConfig = new EncryptTableRuleConfiguration(Collections.singletonMap("pwd", columnConfig));
         EncryptRuleConfiguration encryptRuleConfig = new EncryptRuleConfiguration();
         encryptRuleConfig.getEncryptors().put("aes", encryptorConfig);
-        encryptRuleConfig.getTables().put("t_encrypt", tableConfig);
+        encryptRuleConfig.getTables().put("t_user", tableConfig);
         return encryptRuleConfig;
     }
 }
