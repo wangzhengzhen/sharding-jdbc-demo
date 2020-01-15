@@ -1,7 +1,6 @@
-package com.engrz.demo.sharding.jdbc;
+package com.engrz.demo.sharding.jdbc.main;
 
 import com.engrz.demo.sharding.jdbc.datasource.ShardingDataSource;
-import org.apache.shardingsphere.core.strategy.keygen.SnowflakeShardingKeyGenerator;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -10,13 +9,17 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Logger;
 
-public class Main {
+/**
+ * 测试分片
+ */
+public class ShardingMain {
 
-    private static Logger logger = Logger.getLogger(Main.class.getName());
+    private static Logger logger = Logger.getLogger(ShardingMain.class.getName());
 
     public static void main(String[] args) {
 
         testSharding();
+        logger.info("执行完成");
     }
 
     public static void testSharding() {
@@ -27,7 +30,7 @@ public class Main {
             Connection connection = dataSource.getConnection();
             PreparedStatement preparedStatement = connection.prepareStatement("insert into t_user(user_name, sex, reg_date) values (?,?,?)");
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 100; i++) {
 //                StringBuffer sql = new StringBuffer("insert into t_user(user_id, user_name, sex) values (");
 //                sql.append(new SnowflakeShardingKeyGenerator().generateKey().toString());
 //                sql.append(",'").append("用户" + i).append("'");
