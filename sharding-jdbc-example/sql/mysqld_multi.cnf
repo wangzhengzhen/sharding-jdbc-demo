@@ -1,0 +1,71 @@
+[mysqld_multi]
+mysqld = /usr/bin/mysqld_safe
+mysqladmin = /usr/bin/mysqladmin
+user = root
+#password = 
+
+# master
+[mysqld3307]
+user            = mysql
+pid-file        = /data/mysql/develop/master/mysqld.pid
+socket          = /data/mysql/develop/master/mysqld.sock
+port            = 3307
+datadir         = /data/mysql/develop/master/data
+server-id       = 1
+skip-external-locking
+bind-address            = 0.0.0.0
+key_buffer_size         = 16M
+max_allowed_packet      = 16M
+thread_stack            = 192K
+thread_cache_size       = 8
+myisam-recover-options  = BACKUP
+query_cache_limit       = 1M
+query_cache_size        = 16M
+expire_logs_days        = 10
+max_binlog_size   = 100M
+innodb_buffer_pool_size = 1G
+innodb_io_capacity = 4000
+
+# slave0
+[mysqld3308]
+user            = mysql
+pid-file        = /data/mysql/develop/slave0/mysqld.pid
+socket          = /data/mysql/develop/slave0/mysqld.sock
+port            = 3308
+datadir         = /data/mysql/develop/slave0/data
+server-id       = 2
+skip-external-locking
+bind-address            = 0.0.0.0
+key_buffer_size         = 16M
+max_allowed_packet      = 16M
+thread_stack            = 192K
+thread_cache_size       = 8
+myisam-recover-options  = BACKUP
+query_cache_limit       = 1M
+query_cache_size        = 16M
+expire_logs_days        = 10
+max_binlog_size   = 100M
+innodb_buffer_pool_size = 1G
+innodb_io_capacity = 4000
+
+# slave1
+[mysqld3309]
+user            = mysql
+pid-file        = /data/mysql/develop/slave1/mysqld.pid
+socket          = /data/mysql/develop/slave1/mysqld.sock
+port            = 3309
+datadir         = /data/mysql/develop/slave1/data
+server-id       = 3
+skip-external-locking
+bind-address            = 0.0.0.0
+key_buffer_size         = 16M
+max_allowed_packet      = 16M
+thread_stack            = 192K
+thread_cache_size       = 8
+myisam-recover-options  = BACKUP
+query_cache_limit       = 1M
+query_cache_size        = 16M
+expire_logs_days        = 10
+max_binlog_size   = 100M
+innodb_buffer_pool_size = 1G
+innodb_io_capacity = 4000

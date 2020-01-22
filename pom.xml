@@ -11,6 +11,7 @@
     <modules>
         <module>sharding-jdbc-base</module>
         <module>sharding-sql-test</module>
+        <module>sharding-jdbc-example</module>
     </modules>
 
     <properties>

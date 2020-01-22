@@ -1,0 +1,14 @@
+# 初始化数据库
+mysqld --initialize-insecure --datadir=/data/mysql/develop/master/data --user=mysql
+mysqld --initialize-insecure --datadir=/data/mysql/develop/slave0/data --user=mysql
+mysqld --initialize-insecure --datadir=/data/mysql/develop/slave1/data --user=mysql
+
+# 启动多实例
+mysqld_multi --defaults-file="/etc/mysql/mysql.conf.d/mysqld_multi.cnf" --user=mysql start
+
+create user mysql identified by '123456';
+grant all privileges on *.* to mysql;
+
+# 在主数据库执行，创建同步用户
+create user 'repl' identified by '123456';
+grant replication slave on *.* to 'repl';

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: sharding-jdbc-example
+  profiles:
+    active: dev
+    include:
+  scan:
+    basePackages:
+logging:
+  level:
+    root: INFO
+    com.engrz.demo.spring.boot: DEBUG
+server:
+  port: 8080
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+  tomcat:
+    max-threads: 200
+    accept-count: 100
+    max-connections: 10000
+    port-header: X-Forwarded-Port
+    uri-encoding: UTF-8
