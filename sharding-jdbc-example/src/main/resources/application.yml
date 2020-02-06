@@ -6,6 +6,17 @@ spring:
     include:
   scan:
     basePackages:
+  shardingsphere:
+    datasource:
+      ds0:
+        type: org.apache.commons.dbcp2.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://localhost:3306/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: root
+        passwd: 123456
+      sharding:
+        tables:
+          t_log:
 logging:
   level:
     root: INFO
