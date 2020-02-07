@@ -15,7 +15,7 @@
     </modules>
 
     <properties>
-        <sharding-sphere.version>4.0.0</sharding-sphere.version>
+        <sharding-jdbc.version>4.0.0</sharding-jdbc.version>
         <dbcp2.version>2.7.0</dbcp2.version>
         <mysql-connector.version>8.0.18</mysql-connector.version>
     </properties>
@@ -34,7 +34,7 @@
         <dependency>
             <groupId>org.apache.shardingsphere</groupId>
             <artifactId>sharding-jdbc-core</artifactId>
-            <version>${sharding-sphere.version}</version>
+            <version>${sharding-jdbc.version}</version>
         </dependency>
     </dependencies>
 

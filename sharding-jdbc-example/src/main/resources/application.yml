@@ -8,15 +8,22 @@ spring:
     basePackages:
   shardingsphere:
     datasource:
+      names: ds0
       ds0:
         type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
         url: jdbc:mysql://localhost:3306/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
         username: root
-        passwd: 123456
-      sharding:
-        tables:
-          t_log:
+        password: 123456
+    sharding:
+      tables:
+        t_log:
+          actual-data-nodes: ds0.t_log_$->{2016..2020}
+          table-strategy:
+            standard:
+              sharding-column: create_time
+              precise-algorithm-class-name: com.engrz.demo.sharding.jdbc.example.config.DatePreciseModuloShardingTableAlgorithm
+              range-algorithm-class-name: com.engrz.demo.sharding.jdbc.example.config.DateRangeModuloShardingTableAlgorithm
 logging:
   level:
     root: INFO
@@ -33,3 +40,6 @@ server:
     max-connections: 10000
     port-header: X-Forwarded-Port
     uri-encoding: UTF-8
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

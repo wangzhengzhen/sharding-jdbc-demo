@@ -11,6 +11,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @author jobob
  * @since 2020-02-06
  */
-public interface TLogMapper extends BaseMapper<TLog> {
+public interface LogMapper extends BaseMapper<TLog> {
 
 }
