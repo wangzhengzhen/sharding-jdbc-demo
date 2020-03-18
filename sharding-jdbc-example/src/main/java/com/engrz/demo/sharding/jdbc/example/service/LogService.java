@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.engrz.demo.sharding.jdbc.example.entity.TLog;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  * 系统日志表 服务类
@@ -22,4 +24,5 @@ public interface LogService extends IService<TLog> {
 
     Page<TLog> query(Page<TLog> page, TLog record);
 
+    List<TLog> testQuery();
 }

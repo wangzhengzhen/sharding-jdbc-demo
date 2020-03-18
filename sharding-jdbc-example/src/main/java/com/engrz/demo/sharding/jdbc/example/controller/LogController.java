@@ -41,4 +41,10 @@ public class LogController {
         return logService.query(page, record);
     }
 
+    @RequestMapping("/testQuery")
+    public Object testQuery() {
+
+        return logService.testQuery();
+    }
+
 }

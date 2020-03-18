@@ -11,6 +11,8 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * <p>
  * 系统日志表 服务实现类
@@ -63,5 +65,11 @@ public class LogServiceImpl extends ServiceImpl<LogMapper, TLog> implements LogS
         }
 
         return super.page(page, queryWrapper);
+    }
+
+    @Override
+    public List<TLog> testQuery() {
+
+        return logMapper.testQuery();
     }
 }
