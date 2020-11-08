@@ -1,0 +1,46 @@
+spring:
+  application:
+    name: spring-sharding-jdbc
+  profiles:
+    active: dev
+    include:
+  scan:
+    basePackages:
+  shardingsphere:
+    datasource:
+      names: master1,slave1,slave2
+      master1:
+        type: org.apache.commons.dbcp2.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://${MYSQL_HOST}:3306/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER}
+        password: ${MYSQL_PASSWORD}
+      slave1:
+        type: org.apache.commons.dbcp2.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://${MYSQL_HOST}:3307/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER}
+        password: ${MYSQL_PASSWORD}
+      slave2:
+        type: org.apache.commons.dbcp2.BasicDataSource
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        url: jdbc:mysql://${MYSQL_HOST}:3308/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER}
+        password: ${MYSQL_PASSWORD}
+    sharding:
+      master-slave-rules:
+        ds1:
+          master-data-source-name: master1
+          slave-data-source-names: slave1,slave2
+      tables:
+        t_log:
+          actual-data-nodes: ds1.t_log_$->{2016..2020}
+          table-strategy:
+            standard:
+              sharding-column: create_time
+              precise-algorithm-class-name: com.engrz.commons.sharding.jdbc.algorithm.DatePreciseModuloShardingTableAlgorithm
+              range-algorithm-class-name: com.engrz.commons.sharding.jdbc.algorithm.DateRangeModuloShardingTableAlgorithm
+logging:
+  level:
+    root: INFO
+    com.engrz.demo.sharding.jdbc: DEBUG
