@@ -1,9 +1,6 @@
 spring:
   application:
     name: spring-sharding-jdbc
-  profiles:
-    active: dev
-    include:
   scan:
     basePackages:
   shardingsphere:
@@ -12,21 +9,21 @@ spring:
       master1:
         type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://${MYSQL_HOST}:3306/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
-        username: ${MYSQL_USER}
-        password: ${MYSQL_PASSWORD}
+        url: jdbc:mysql://${MYSQL_HOST}:3306/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER, engrz}
+        password: ${MYSQL_PASSWORD, engrz2021}
       slave1:
         type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://${MYSQL_HOST}:3307/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
-        username: ${MYSQL_USER}
-        password: ${MYSQL_PASSWORD}
+        url: jdbc:mysql://${MYSQL_HOST}:3307/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER, engrz}
+        password: ${MYSQL_PASSWORD, engrz2021}
       slave2:
         type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://${MYSQL_HOST}:3308/ds0?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
-        username: ${MYSQL_USER}
-        password: ${MYSQL_PASSWORD}
+        url: jdbc:mysql://${MYSQL_HOST}:3308/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER, engrz}
+        password: ${MYSQL_PASSWORD, engrz2021}
     sharding:
       master-slave-rules:
         ds1:

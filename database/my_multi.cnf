@@ -1,0 +1,35 @@
+[mysqld_multi]
+mysqld = /usr/bin/mysqld_safe
+mysqladmin = /usr/bin/mysqladmin
+user = root
+password = engr2021
+
+# master1
+[mysqld3307]
+user		= mysql
+datadir		= /home/mysql/master1
+pid-file	= /home/mysql/master1/mysqld.pid
+socket		= /home/mysql/master1/mysqld.sock
+port		= 3307
+bind-address		= 0.0.0.0
+server-id   = 100
+
+# slave1
+[mysqld3308]
+user		= mysql
+datadir		= /home/mysql/slave1
+pid-file	= /home/mysql/slave1/mysqld.pid
+socket		= /home/mysql/slave1/mysqld.sock
+port		= 3308
+bind-address		= 0.0.0.0
+server-id   = 200
+
+# slave2
+[mysqld3309]
+user		= mysql
+datadir		= /home/mysql/slave2
+pid-file	= /home/mysql/slave2/mysqld.pid
+socket		= /home/mysql/slave2/mysqld.sock
+port		= 3309
+bind-address		= 0.0.0.0
+server-id   = 201
