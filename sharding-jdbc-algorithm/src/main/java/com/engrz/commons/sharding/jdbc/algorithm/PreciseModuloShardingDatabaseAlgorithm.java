@@ -11,9 +11,9 @@ public class PreciseModuloShardingDatabaseAlgorithm implements PreciseShardingAl
     public String doSharding(final Collection<String> databaseNames, final PreciseShardingValue<Long> shardingValue) {
 
         int m = databaseNames.size();
-        for (String each : databaseNames) {
-            if (each.endsWith(shardingValue.getValue() % m + "")) {
-                return each;
+        for (String name : databaseNames) {
+            if (name.endsWith(shardingValue.getValue() % m + "")) {
+                return name;
             }
         }
         throw new UnsupportedOperationException();
