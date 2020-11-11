@@ -80,6 +80,7 @@ show slave status;
 ```
 
 Slave_IO_Running: Yes    //此状态必须YES
+
 Slave_SQL_Running: Yes     //此状态必须YES
 
 以上两个字段为YES时说明主从环境OK。

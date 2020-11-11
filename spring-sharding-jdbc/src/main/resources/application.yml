@@ -4,40 +4,52 @@ spring:
   scan:
     basePackages:
   shardingsphere:
+    props:
+      show-sql: true
     datasource:
       names: master1,slave1,slave2
       master1:
         type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://${MYSQL_HOST}:3306/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
-        username: ${MYSQL_USER, engrz}
-        password: ${MYSQL_PASSWORD, engrz2021}
+        url: jdbc:mysql://${MYSQL_HOST:localhost}:3307/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER:engrz}
+        password: ${MYSQL_PASSWORD:engrz2021}
       slave1:
         type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://${MYSQL_HOST}:3307/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
-        username: ${MYSQL_USER, engrz}
-        password: ${MYSQL_PASSWORD, engrz2021}
+        url: jdbc:mysql://${MYSQL_HOST:localhost}:3308/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER:engrz}
+        password: ${MYSQL_PASSWORD:engrz2021}
       slave2:
         type: org.apache.commons.dbcp2.BasicDataSource
         driver-class-name: com.mysql.cj.jdbc.Driver
-        url: jdbc:mysql://${MYSQL_HOST}:3308/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&serverTimezone=Asia/Shanghai
-        username: ${MYSQL_USER, engrz}
-        password: ${MYSQL_PASSWORD, engrz2021}
+        url: jdbc:mysql://${MYSQL_HOST:localhost}:3309/engrz?useSSL=false&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Shanghai
+        username: ${MYSQL_USER:engrz}
+        password: ${MYSQL_PASSWORD:engrz2021}
     sharding:
       master-slave-rules:
         ds1:
           master-data-source-name: master1
           slave-data-source-names: slave1,slave2
       tables:
-        t_log:
-          actual-data-nodes: ds1.t_log_$->{2016..2020}
+        t_user_info:
+          actualDataNodes: ds1.t_user_info_${0..9}
+          tableStrategy:
+            inline:
+              shardingColumn: user_id
+              algorithmExpression: t_user_info_${user_id % 10}
+        t_user_log:
+          actual-data-nodes: ds1.t_user_log_$->{2019..2021}
           table-strategy:
             standard:
-              sharding-column: create_time
+              sharding-column: log_date
               precise-algorithm-class-name: com.engrz.commons.sharding.jdbc.algorithm.DatePreciseModuloShardingTableAlgorithm
               range-algorithm-class-name: com.engrz.commons.sharding.jdbc.algorithm.DateRangeModuloShardingTableAlgorithm
+  jpa:
+    show-sql: true
+    hibernate:
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 logging:
   level:
-    root: INFO
     com.engrz.demo.sharding.jdbc: DEBUG
