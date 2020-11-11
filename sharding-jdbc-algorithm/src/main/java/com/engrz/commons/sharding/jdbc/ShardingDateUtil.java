@@ -2,6 +2,11 @@ package com.engrz.commons.sharding.jdbc;
 
 public class ShardingDateUtil {
 
+    enum ShardingDateUnit {
+
+        YEAR, MONTH, QUARTER;
+    }
+
     /**
      * 获取季度
      * @param month

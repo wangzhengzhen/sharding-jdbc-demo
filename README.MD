@@ -1,6 +1,6 @@
-# Sharding JDBC DEMO
+# Sharding JDBC Demo
 
-基于 sharding-jdbc 4.x 演练
+基于 sharding-jdbc 4.x 演练，持续更新。
 
 ## 目录模块说明
 
@@ -8,7 +8,9 @@ database    数据库相关配置及建表语句
 
 sharding-jdbc-algorithm     提取公共的分片算法
 
-spring-sharding-jdbc        集成springboot样例
+sharding-jdbc-simple        纯java代码配置示例，不包含其他功能集成
+
+spring-sharding-jdbc        使用springboot集成的完整示例
 
 ## 环境搭建
 
